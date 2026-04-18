@@ -7,7 +7,7 @@ COPY healthcheck-go/main.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-s -w -extldflags "-static"' -o healthcheck main.go
 
 # nginx build step
-FROM ubuntu:26.04 AS build
+FROM ubuntu:24.04 AS build
 
 # set environment variables
 # latest stable nginx version
