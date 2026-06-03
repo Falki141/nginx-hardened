@@ -11,7 +11,7 @@ FROM ubuntu:24.04 AS build
 
 # set environment variables
 # latest stable nginx version
-ARG NGINX_VERSION=1.30.1
+ARG NGINX_VERSION=1.30.2
 ARG TZ=Europe/Berlin
 ARG NGINX_PORT=8080
 ENV DEBIAN_FRONTEND=noninteractive
