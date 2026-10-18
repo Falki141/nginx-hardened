@@ -7,18 +7,18 @@ COPY healthcheck-go/main.go ./
 RUN CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-s -w -extldflags "-static"' -o healthcheck main.go
 
 # nginx build step
-FROM ubuntu:24.04 AS build
+FROM ubuntu:26.04 AS build
 
 # set environment variables
 # latest stable nginx version
-ARG NGINX_VERSION=1.30.2
+ARG NGINX_VERSION=1.30.6
 ARG TZ=Europe/Berlin
 ARG NGINX_PORT=8080
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install build tools, libraries and utilities 
 RUN apt-get update  \
-    && apt-get install -y --no-install-recommends --no-install-suggests build-essential ca-certificates curl libpcre3 libpcre3-dev wget zlib1g-dev unzip make gcc g++ libarchive-tools gnupg tzdata autoconf jq \
+    && apt-get install -y --no-install-recommends --no-install-suggests build-essential ca-certificates curl libpcre2-dev wget zlib1g-dev unzip make gcc g++ libarchive-tools gnupg tzdata autoconf jq \
     && apt-get autoremove -y --purge \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
